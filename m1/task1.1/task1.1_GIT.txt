@@ -1,0 +1,16 @@
+45cce79 HEAD@{0}: pull origin main --allow-unrelated-histories: Merge made by the 'recursive' strategy.
+461c045 HEAD@{1}: merge develop: Fast-forward
+0bd20db HEAD@{2}: checkout: moving from develop to main
+461c045 HEAD@{3}: merge styles: Merge made by the 'recursive' strategy.
+72e09ae HEAD@{4}: merge images: Fast-forward
+e659c89 HEAD@{5}: checkout: moving from styles to develop
+4b6d706 HEAD@{6}: commit: Change your index.html. Commit.
+fa6245a HEAD@{7}: commit: Create branch with name “styles”. Checkout on it. Add styles folder with styles source inside it. Commit.
+e659c89 HEAD@{8}: checkout: moving from develop to styles
+e659c89 HEAD@{9}: checkout: moving from images to develop
+72e09ae HEAD@{10}: commit: Change your index.html. Add images source inside it. Commit.
+a3a7b4d HEAD@{11}: commit: Create branch with name “images”. Checkout on it. Add images folder with some images inside it. Commit.
+e659c89 HEAD@{12}: checkout: moving from develop to images
+e659c89 HEAD@{13}: commit: 13. Create index.html empty file. Commit.
+0bd20db HEAD@{14}: checkout: moving from main to develop
+0bd20db HEAD@{15}: commit (initial): first lesson
