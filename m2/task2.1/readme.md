@@ -13,4 +13,5 @@ They are very similar. Main defferences in settings andtechnical limitations.
 vm.png in m2/task2.1
 
 3.
-
+vagrant.png in m2/task2.1
+vagrant file with network/dhcp support
