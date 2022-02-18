@@ -10,8 +10,8 @@ RHEV
 They are very similar. Main defferences in settings andtechnical limitations.
 
 2
-vm.png in m2/task2.1
+task2.1.jpeg in m2/task2.1
 
 3.
-vagrant.png in m2/task2.1
+vagrant.jpeg in m2/task2.1
 vagrant file with network/dhcp support
