@@ -7,12 +7,23 @@ root@epamhw:/home/ubuntu# ls -laht /etc/shadow
 root@epamhw:/home/ubuntu# date
 Tue Apr  5 13:04:39 UTC 2022
 ```
+
 3
+
+```
 root@epamhw:/home/ubuntu# cat .bash_history
 By command executions may found some security-sensitive commands like passwords or tables/db's names.
+```
+
 4
-root@epamhw:/home/ubuntu# usermod -c "some add-onla info like comment" usernameroot@epamhw:/home/ubuntu# usermod -l new current
+
+```
+root@epamhw:/home/ubuntu# usermod -c "some add-onla info like comment" 
+usernameroot@epamhw:/home/ubuntu# usermod -l new current
+```
+
 or use command chfn
+
 ```
 root@epamhw:/home/ubuntu# chfn ubuntu
 Changing the user information for ubuntu
@@ -23,9 +34,11 @@ Enter the new value, or press ENTER for the default
 	Home Phone []: 111
 	Other []: 
 ```
+
 5
 man usermod
 then find info about comment by : "/comment"
+
 ```
        -c, --comment COMMENT
            The new value of the user's password file comment field. It is
@@ -47,15 +60,20 @@ problem since the permissions of symbolic links are never used.
 
 etc
 ```
+
 5
 less and more command use for paging files. less is more powerfull because readpart of file and have more functionals.
+
 6
+
 ```
 ubuntu@epamhw:~$ finger -s ubuntu
 Login     Name       Tty      Idle  Login Time   Office     Office Phone
 ubuntu    Ubuntu     pts/0          Apr  6 08:53 (77.120.39.226)
 ```
+
 7
+
 ```
 root@epamhw:/home/ubuntu# ls -lahp
 total 44K
@@ -83,6 +101,7 @@ file
 ubuntu@epamhw:~$ file /usr/bin/ln
 /usr/bin/ln: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=419f9689c55d7b7752afeb771118751a335346a2, for GNU/Linux 3.2.0, stripped
 ```
+
 ```
 ubuntu@epamhw:~$ file .bash_history
 .bash_history: UTF-8 Unicode text
