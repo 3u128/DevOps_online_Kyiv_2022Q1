@@ -1,5 +1,6 @@
 1
 
+```
 /etc/passwd -user acc info
 username|pass in swadow file|uid|gid|comment|home dir|command/shell
 
@@ -9,16 +10,19 @@ man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
 
 /etc/group
 name|pass|gid|list of users
+```
 
 2
 
 UID
 
+```
 0 -root id
 1-99 -daemons, pseudo users, reserved and system users
 1000-65535 -regular users
 uid -unique id of user
 define: useradd -u key
+```
 
 3
 
@@ -134,6 +138,7 @@ drwxrwxr-x 2 ubuntu ubuntu 4096 Apr  7 20:34 test
 
 umask changes the default permissions and thus the permissions for all newly created files and folders
 
+```
 attributes by codes:
 0 : read, write and execute
 1 : read and write
@@ -145,8 +150,11 @@ attributes by codes:
 7 : no permissions
 
 source: https://www.cyberciti.biz/tips/understanding-linux-unix-umask-value-usage.html
+```
 
 digit transformation can describe how to set attr.
+
+```
 rwx
 000 0
 001 1
@@ -156,7 +164,9 @@ rwx
 101 5
 110 6
 111 7
+```
 
+```
 in the end :
 set UID|set GID|BIT|R|W|X|R|W|X|R|W|X|
    0   |   0   | 0 |1|1|1|1|0|1|0|0|0|
@@ -164,6 +174,7 @@ set UID|set GID|BIT|R|W|X|R|W|X|R|W|X|
            0       |  7  |  5  |  0  |
 ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 umask 0750
+```
 
 16
 
