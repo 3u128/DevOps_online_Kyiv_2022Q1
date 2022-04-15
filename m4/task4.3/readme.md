@@ -197,6 +197,13 @@ Part2
 
 1
 
+[!https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/431.png](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/431.png)
+
+[!https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/432.png](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/432.png)
+
+
+
+
 2
 change port from default
 disable pass auth
