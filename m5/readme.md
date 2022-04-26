@@ -94,5 +94,99 @@ iface eth0 inet static
         netmask 255.255.255.0
 ```	
 
-DHCP
+__DHCP__
+
+```
+client1:~$ ifconfig eth1
+eth1      Link encap:Ethernet  HWaddr 08:00:27:65:5A:04
+          inet addr:10.1.92.2  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::a00:27ff:fe65:5a04/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:7 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:15 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:986 (986.0 B)  TX bytes:1662 (1.6 KiB)
+
+client1:~$ route -n
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+0.0.0.0         10.0.2.2        0.0.0.0         UG    202    0        0 eth0
+0.0.0.0         10.1.92.1       0.0.0.0         UG    203    0        0 eth1
+10.0.2.0        0.0.0.0         255.255.255.0   U     0      0        0 eth0
+10.1.92.0       0.0.0.0         255.255.255.0   U     0      0        0 eth1
+10.1.92.1       0.0.0.0         255.255.255.255 UH    0      0        0 eth1
+172.16.3.0      0.0.0.0         255.255.255.0   U     0      0        0 eth2
+client1:~$ traceroute i.ua
+traceroute to i.ua (104.18.2.81), 30 hops max, 46 byte packets
+ 1  10.0.2.2 (10.0.2.2)  0.119 ms  0.145 ms  0.148 ms
+ 2  10.0.2.1 (10.0.2.1)  3.338 ms  3.244 ms  5.205 ms
+ 3  77.120.39.225.lvv.volia.net (77.120.39.225)  3.197 ms  6.937 ms  6.711 ms
+
+```
+```
+client1:~$ ping 10.1.92.1
+PING 10.1.92.1 (10.1.92.1): 56 data bytes
+64 bytes from 10.1.92.1: seq=0 ttl=42 time=1.852 ms
+64 bytes from 10.1.92.1: seq=1 ttl=42 time=1.553 ms
+^C
+--- 10.1.92.1 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 1.553/1.702/1.852 ms
+```
+
+settings for setup in Vagrant file
+in section client1
+
+In the task5 I learn how to use route and ip, setuppping permanent setting for static routes and configuring some manual manipulating with dev interfaces.
+There are many ways to do this in others distributives like Debian/Ubuntu/CentOS.
+
+###################################
+
+File `vagrant-net/Vagrantfile` consist more manual setup for demonstating how to do same things by editing config files.
+
+####################################
+
+However, in my opinion, I need to know how to setup network configuration in another distributives.
+For this reason - another setup in file `vagrant-int-net-nat/Vagrantfile`
+
+
+```
+3: enp0s9: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:7e:d3:1e brd ff:ff:ff:ff:ff:ff
+    inet 172.16.3.1/24 brd 172.16.3.255 scope global enp0s9
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe7e:d31e/64 scope link
+       valid_lft forever preferred_lft forever
+4: enp0s10: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:38:d2:d7 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.92.2/24 metric 100 brd 10.1.92.255 scope global dynamic enp0s10
+       valid_lft 459sec preferred_lft 459sec
+    inet6 fe80::a00:27ff:fe38:d2d7/64 scope link
+       valid_lft forever preferred_lft forever
+vagrant@client1:~$ ping 10.1.92.1
+PING 10.1.92.1 (10.1.92.1) 56(84) bytes of data.
+64 bytes from 10.1.92.1: icmp_seq=1 ttl=64 time=1.30 ms
+64 bytes from 10.1.92.1: icmp_seq=2 ttl=64 time=0.573 ms
+^C
+--- 10.1.92.1 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1027ms
+rtt min/avg/max/mdev = 0.573/0.934/1.296/0.361 ms
+vagrant@client1:~$ tracepath -n 10.1.92.1
+ 1?: [LOCALHOST]                      pmtu 1500
+ 1:  10.1.92.1                                             0.915ms reached
+ 1:  10.1.92.1                                             0.714ms reached
+     Resume: pmtu 1500 hops 1 back 1
+vagrant@client1:~$ route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         _gateway        0.0.0.0         UG    100    0        0 enp0s3
+default         _gateway        0.0.0.0         UG    100    0        0 enp0s10
+10.0.2.0        0.0.0.0         255.255.255.0   U     100    0        0 enp0s3
+_gateway        0.0.0.0         255.255.255.255 UH    100    0        0 enp0s3
+_gateway        0.0.0.0         255.255.255.255 UH    100    0        0 enp0s10
+10.0.2.3        0.0.0.0         255.255.255.255 UH    100    0        0 enp0s3
+10.1.92.0       0.0.0.0         255.255.255.0   U     100    0        0 enp0s10
+172.16.3.0      0.0.0.0         255.255.255.0   U     0      0        0 enp0s9
+resolver1.opend _gateway        255.255.255.255 UGH   100    0        0 enp0s10
+```
 
