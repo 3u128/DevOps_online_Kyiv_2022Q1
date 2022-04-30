@@ -1,0 +1,13 @@
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+    hostname alpine38.localdomain
+
+auto eth1
+iface eth1 inet dhcp
+    hostname cl
+auto eth2
+iface eth2 inet dhcp
+    hostname cl
