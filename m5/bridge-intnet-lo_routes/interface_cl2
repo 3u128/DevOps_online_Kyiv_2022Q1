@@ -7,7 +7,8 @@ iface eth0 inet dhcp
 
 auto eth1
 iface eth1 inet dhcp
-    hostname cl
+    hostname cl2
 auto eth2
-iface eth2 inet dhcp
-    hostname cl
+iface eth2 inet static
+    address 172.16.3.2
+    netmask 255.255.255.0
