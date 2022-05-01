@@ -1,15 +1,21 @@
 #!/bin/bash
-mem="1g"
-tmpdir="/tmp"
-usage="$0 [-m] [-t] [-h]
--m mem (default 1g)
--t tmpdir (default /tmp)
--h show this help menu"
-while getopts "m:t:h" flag; do
-case "$flag" in
-m) mem=$OPTARG ;;
-t) tmpdir=$OPTARG ;;
-h) echo "$usage" ; exit 0 ;;
-?) echo "$usage" ; exit 1 ;;
-esac
-done
+
+# source: https://tldp.org/LDP/abs/html/testbranch.html#EX30
+# most part solved by Advanced Bash-Scripting Guide - Mendel Cooper
+
+if [[ "$#" -gt 0 ]]; then
+	case "$1" in
+		--all) 
+			hostname -i
+			ip addr | grep -i inet;;
+		--target)
+			ss -t -a;;
+		--help)
+			echo "usage: netinfo [--all][--help]
+
+--all displays the IP addresses and symbolic names of all hosts in the current subnet
+--target displays a list of open system TCP ports";;
+	esac
+else
+	echo "print netinfo --help"
+fi
