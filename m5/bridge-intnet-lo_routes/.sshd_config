@@ -1,8 +1,0 @@
-AuthorizedKeysFile	.ssh/authorized_keys
-
-Subsystem	sftp	/usr/lib/ssh/sftp-server
-
-PasswordAuthentication no
-PermitRootLogin yes
-
-UseDNS no
