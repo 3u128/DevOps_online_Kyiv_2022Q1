@@ -310,3 +310,95 @@ traceroute to 172.17.23.1 (172.17.23.1), 30 hops max, 46 byte packets
 cl2:~$
 ```
 
+## task 6
+``` cl1:~$ ssh-keygen -t rsa -f /home/vagrant/.ssh/id_rsa_cl1 -q -P "" ```
+-P is the passphrase option, "" is the empty passphrase
+-q quiet (without verbose output)
+
+# change to no password auth.
+```
+server:~$ cat /etc/ssh/sshd_config 
+AuthorizedKeysFile	.ssh/authorized_keys
+
+Subsystem	sftp	/usr/lib/ssh/sftp-server
+# change to yes in yout want to stay with password login
+PasswordAuthentication no
+PermitRootLogin yes
+
+UseDNS no
+```
+
+```
+# after that changes in conf file need to restart sshd
+server:~$ sudo rc-service sshd restart
+# now try 
+cl1:~$ ssh -i ~/.ssh/id_rsa_cl1 vagrant@192.168.1.19
+server:~$
+``
+
+server:~$ sudo iptables -A INPUT -i eth3 -p tcp --dport 22 -j DROP
+server:~$ sudo iptables -nvL --line-numbers
+Chain INPUT (policy ACCEPT 25 packets, 1244 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 DROP       tcp  --  eth3   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 17 packets, 1300 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+server:~$ exit
+logout
+Connection to 127.0.0.1 closed.
+thinkpad .../m5/bridge-intnet-lo_routes # vagrant ssh cl2
+cl2:~$ ssh vagrant@192.168.1.19
+^C
+cl2:~$ time ssh -v vagrant@192.168.1.19
+OpenSSH_7.7p1, LibreSSL 2.7.5
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Connecting to 192.168.1.19 [192.168.1.19] port 22.
+^C
+
+real	0m23.553s
+user	0m0.015s
+sys	0m0.011s
+cl2:~$ ping 192.168.1.19
+PING 192.168.1.19 (192.168.1.19): 56 data bytes
+64 bytes from 192.168.1.19: seq=0 ttl=42 time=0.937 ms
+^C
+--- 192.168.1.19 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 0.937/0.937/0.937 ms
+```
+## add rule for block by 172.17.23.1 from Client 2
+## with icmp protocol 
+```
+server:~$ sudo iptables -I INPUT -p icmp -s 172.17.23.1 -j DROP
+server:~$ sudo iptables -A INPUT -i eth3 -p tcp --dport 22 -j DROP
+
+server:~$ sudo iptables -nvL --line-numbers
+Chain INPUT (policy ACCEPT 67 packets, 3004 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+1        0     0 DROP       icmp --  *      *       172.17.23.1          0.0.0.0/0           
+2        0     0 DROP       tcp  --  eth3   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:22
+
+Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+Chain OUTPUT (policy ACCEPT 58 packets, 4452 bytes)
+num   pkts bytes target     prot opt in     out     source               destination         
+
+
+cl2:~$ ping 172.17.123.1
+PING 172.17.123.1 (172.17.123.1): 56 data bytes
+^C
+--- 172.17.123.1 ping statistics ---
+2 packets transmitted, 0 packets received, 100% packet loss
+cl2:~$ ping 172.17.13.1
+PING 172.17.13.1 (172.17.13.1): 56 data bytes
+64 bytes from 172.17.13.1: seq=0 ttl=42 time=2.574 ms
+^C
+--- 172.17.13.1 ping statistics ---
+1 packets transmitted, 1 packets received, 0% packet loss
+round-trip min/avg/max = 2.574/2.574/2.574 ms
+cl2:~$
