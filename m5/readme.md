@@ -11,7 +11,6 @@ vagrant ssh server #connect to server with ssh by key
 vagrant halt #poweroff vm's
 
 ```
-thinkpad /home/b2q/dev/DevOps_online_Kyiv_2022Q1/m5/vagrant-net # vagrant ssh client1
 client1:~$ uname -a
 Linux client1 4.14.167-0-virt #1-Alpine SMP Thu Jan 23 10:58:18 UTC 2020 x86_64 Linuclient1:~$ uname -a
 Linux client1 4.14.167-0-virt #1-Alpine SMP Thu Jan 23 10:58:18 UTC 2020 x86_64 Linux
@@ -72,7 +71,6 @@ server:~$
 From client2 to client 1:
 
 ```
-thinkpad /home/b2q/dev/DevOps_online_Kyiv_2022Q1/m5/vagrant-net-static # vagrant ssh client2
 client2:~$ ping 172.16.3.1
 PING 172.16.3.1 (172.16.3.1): 56 data bytes
 64 bytes from 172.16.3.1: seq=0 ttl=42 time=2.375 ms
@@ -189,6 +187,9 @@ _gateway        0.0.0.0         255.255.255.255 UH    100    0        0 enp0s10
 172.16.3.0      0.0.0.0         255.255.255.0   U     0      0        0 enp0s9
 resolver1.opend _gateway        255.255.255.255 UGH   100    0        0 enp0s10
 ```
+
+# Below result of partially automated vagrant setup 
+## in dir bridge-intnet-lo_routes
 
 ## task 4-5
 ```
@@ -347,12 +348,6 @@ num   pkts bytes target     prot opt in     out     source               destina
 
 Chain OUTPUT (policy ACCEPT 17 packets, 1300 bytes)
 num   pkts bytes target     prot opt in     out     source               destination         
-server:~$ exit
-logout
-Connection to 127.0.0.1 closed.
-thinkpad .../m5/bridge-intnet-lo_routes # vagrant ssh cl2
-cl2:~$ ssh vagrant@192.168.1.19
-^C
 cl2:~$ time ssh -v vagrant@192.168.1.19
 OpenSSH_7.7p1, LibreSSL 2.7.5
 debug1: Reading configuration data /etc/ssh/ssh_config
@@ -402,3 +397,5 @@ PING 172.17.13.1 (172.17.13.1): 56 data bytes
 1 packets transmitted, 1 packets received, 0% packet loss
 round-trip min/avg/max = 2.574/2.574/2.574 ms
 cl2:~$
+```
+![forwarding by netis home router](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m5/bridge-intnet-lo_routes/task5_forwarding.png)
