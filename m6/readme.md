@@ -57,7 +57,9 @@ Using Apache log example create a script to answer the following questions:
    ua - user agent
 
    ```
-$16"+ IP:"$1}' | sort -n | uniq -c
+
+      "grep robots example_log.log | awk '{ print "UA: "$12 $13 $14 $15 $16"+ IP:"$1}' | sort -n | uniq -c"
+
       1 UA: "Mozilla/5.0(compatible;GrapeshotCrawler/2.0;+http://www.grapeshot.co.uk/crawler.php)"+ IP:89.145.95.69
      11 UA: "Mozilla/5.0(compatible;Linuxx86_64;Mail.RU_Bot/2.0;+ IP:217.69.133.234
       8 UA: "Mozilla/5.0(compatible;Linuxx86_64;Mail.RU_Bot/2.0;+ IP:217.69.133.235
@@ -77,7 +79,6 @@ $16"+ IP:"$1}' | sort -n | uniq -c
       2 UA: "Mozilla/5.0(compatible;MJ12bot/v1.4.7;http://mj12bot.com/)"+ IP:144.76.76.115
       1 UA: "Mozilla/5.0(compatible;YandexBot/3.0;+http://yandex.com/bots)"+ IP:5.255.251.28
       1 UA: "Twitterbot/1.0"+ IP:199.16.157.182
-      b2q@thinkpad ~/.../m6/task1 $ grep robots example_log.log | awk '{ print "UA: "$12 $13 $14 $15 $16"+ IP:"$1}' | sort -n | uniq -c
    ```
 task1/apache_logs.txt
 task1/example_log.log
