@@ -10,6 +10,8 @@ chmod +x netinfo.sh
 run by ./netinfo.sh
 
 ## B.
+
+
 Using Apache log example create a script to answer the following questions: 
 1. From which ip were the most requests?  
    ```awk '{ print $1 }' apache_logs.txt | uniq -c | awk '{ print $1, $2}' | sort -g -r | head -n 3```
@@ -20,6 +22,9 @@ Using Apache log example create a script to answer the following questions:
 	uniq -c = count
 	sort -g = compare by numeric
         grep ' 200 ' - search available sites
+        
+	task1/apache_logs.txt
+        task1/example_log.log
    ```
 2. What is the most requested page?
    ``` awk {'print $7'} example_log.log | sort | uniq -c | sort -nk1 ```
@@ -80,8 +85,6 @@ Using Apache log example create a script to answer the following questions:
       1 UA: "Mozilla/5.0(compatible;YandexBot/3.0;+http://yandex.com/bots)"+ IP:5.255.251.28
       1 UA: "Twitterbot/1.0"+ IP:199.16.157.182
    ```
-task1/apache_logs.txt
-task1/example_log.log
 
 ## C.
 
