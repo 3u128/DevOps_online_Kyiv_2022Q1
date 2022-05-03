@@ -1,1 +1,0 @@
-grep '" 404' example_log.log

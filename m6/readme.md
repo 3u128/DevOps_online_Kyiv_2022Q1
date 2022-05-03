@@ -50,9 +50,8 @@ Using Apache log example create a script to answer the following questions:
     253 11
     249 12
      60 13
-b2q@thinkpad ~/.../m6/task1 $ awk '{ print $4 }' example_log.log | awk -F: '{ print $2 }' | sort -g | uniq -c
-
    ```
+
 6. What search bots have accessed the site? (UA + IP)
 
    ua - user agent
