@@ -98,3 +98,13 @@ Simpliest way is to use rsync:
 ``` rsync -acr --log-file=diff.log "$from" "$to" ```
 send to cron by
 
+``` (crontab -l; echo "* * * * * rsync -acr --log-file=diff.log SOURCE DEST") | sort -u | cront
+ab - ```
+where SOURCE and DEST are the dirs
+
+OR
+
+``` (crontab -l; echo "* * * * * /home/user/backup.sh -i /path/source -o /path/dest") | sort -u | crontab - ```
+
+for deleting use crontab -r
+source: https://www.baeldung.com/linux/create-crontab-script

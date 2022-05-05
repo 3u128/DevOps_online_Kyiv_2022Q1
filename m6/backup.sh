@@ -15,7 +15,7 @@ exit 1
 fi
 }
 
-while getopts "i:o:" opt
+while getopts "i:o:e:" opt
 do
 case $opt in
 i) checkargs; 
@@ -26,13 +26,13 @@ e) 	ssh="$OPTARG";;
 *) echo "No reasonable options found!";;
 esac
 done
-echo "$from"
-echo "$to"
-echo "$ssh"
+#echo "$from"
+#echo "$to"
+#echo "$ssh"
 #if [ -n "$ssh" ]
 #	rsync -avz --log-file=diff-ssh.log -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" user@ip:/"$to""
 #fi
-# 
+ 
 rsync -acr --log-file=diff.log "$from" "$to"
 
 #diff "$from" "$to" | awk -F: '{ print $2 }' | awk '{ print '$from'$1 }' > list   
