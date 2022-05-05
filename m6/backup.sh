@@ -22,13 +22,19 @@ i) checkargs;
 	from="$OPTARG";;
 o) checkargs;
 	to="$OPTARG";;
+e) 	ssh="$OPTARG";;
 *) echo "No reasonable options found!";;
 esac
 done
 echo "$from"
 echo "$to"
+echo "$ssh"
+#if [ -n "$ssh" ]
+#	rsync -avz --log-file=diff-ssh.log -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" user@ip:/"$to""
+#fi
 # 
 rsync -acr --log-file=diff.log "$from" "$to"
+
 #diff "$from" "$to" | awk -F: '{ print $2 }' | awk '{ print '$from'$1 }' > list   
 #diff "$from" "$to" | awk -F: '{ print $2 }' > list
 #tst=/sdf/sdf/; cat test | awk -b '{ "%s, %s" { printf '$tst'$1 } }' > for
