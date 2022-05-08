@@ -148,3 +148,84 @@ mysql> select * from users where id > 2;
 
 
 ## PART 2
+10. Make backup of your database. 
+```
+ubuntu@epam:~$ sudo mysqldump -u epam -p epam > epam.sql
+Enter password: 
+ubuntu@epam:~$ ls
+epam.sql
+```
+
+11. Delete the table and/or part of the data in the table. 
+mysql> delete from users where name = 'Yevhen'; 
+Query OK, 1 row affected (0.01 sec) 
+
+mysql> select * from users;
++------+--------------+
+| id   | name         |
++------+--------------+
+|    2 | Vasyl        |
+|    2 | Kotygoroshko |
+|    3 | Kotygoroshko |
+|    4 | Oleksandra   |
++------+--------------+
+4 rows in set (0.00 sec)
+
+12. Restore your database.
+```
+ubuntu@epam:~$ mysql -u epam -p epam < epam.sql
+mysql> select * from users;
++------+--------------+
+| id   | name         |
++------+--------------+
+|    1 | Yevhen       |
+|    2 | Vasyl        |
+|    2 | Kotygoroshko |
+|    3 | Kotygoroshko |
+|    4 | Oleksandra   |
++------+--------------+
+5 rows in set (0.00 sec)
+```
+
+13. Transfer your local database to RDS AWS. 
+
+version by pipe:
+
+```
+sudo mysqldump -u root \
+    --databases epam \
+    --single-transaction \
+    --compress \
+    --order-by-primary  \
+    --routines=0 \
+    --triggers=0 \
+    --events=0 \
+    -plocalpass | mysql -u admin \
+        --port=3306 \
+        --host=database-1.c6qiqbkvbq6o.us-east-1.rds.amazonaws.com \
+        -prdspass
+```
+14. Connect to your database.  
+
+```
+mysql -h database-1.c6qiqbkvbq6o.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+```
+
+15. repeat task 6 
+[img](!)
+
+
+16. Create the dump of your database.Transfer your local database to RDS AWS. 
+
+
+```
+mysqldump -u admin -p -h database-1.c6qiqbkvbq6o.us-east-1.rds.amazonaws.com epam > epam.sql
+```
+where
+
+-u master user of rds
+-p waiting password
+-h rds endpoint
+epam - name of remote db (named when create)
+> epam.sql - name of backuped db
+
