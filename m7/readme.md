@@ -136,7 +136,7 @@ mysql> select User from db group by User;
 | mysql.sys     |
 +---------------+
 2 rows in set (0.00 sec)
-```
+
 
 mysql> select * from users where id > 2;
 +------+
@@ -146,6 +146,7 @@ mysql> select * from users where id > 2;
 +------+
 1 row in set (0.00 sec)
 
+```
 
 ## PART 2
 10. Make backup of your database. 
@@ -157,6 +158,8 @@ epam.sql
 ```
 
 11. Delete the table and/or part of the data in the table. 
+
+```
 mysql> delete from users where name = 'Yevhen'; 
 Query OK, 1 row affected (0.01 sec) 
 
@@ -170,6 +173,8 @@ mysql> select * from users;
 |    4 | Oleksandra   |
 +------+--------------+
 4 rows in set (0.00 sec)
+
+```
 
 12. Restore your database.
 ```
@@ -223,9 +228,10 @@ mysqldump -u admin -p -h database-1.c6qiqbkvbq6o.us-east-1.rds.amazonaws.com epa
 ```
 where
 
+```
 -u master user of rds
 -p waiting password
 -h rds endpoint
 epam - name of remote db (named when create)
 > epam.sql - name of backuped db
-
+```
