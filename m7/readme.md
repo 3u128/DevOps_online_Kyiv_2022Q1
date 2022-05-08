@@ -238,7 +238,9 @@ epam - name of remote db (named when create)
 
 ## PART 3
 17-18
-![part3]()
+
+
+![part3](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m7/20220805-part3.png)
 
 19-20
 
