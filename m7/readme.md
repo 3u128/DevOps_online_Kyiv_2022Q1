@@ -211,8 +211,8 @@ sudo mysqldump -u root \
 mysql -h database-1.c6qiqbkvbq6o.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
 ```
 
-15. repeat task 6 
-[img](!)
+15. repeat task 6
+[view](!https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m7/20220508_20h40m49s_grim.png)
 
 
 16. Create the dump of your database.Transfer your local database to RDS AWS. 
