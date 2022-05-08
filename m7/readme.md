@@ -235,3 +235,30 @@ where
 epam - name of remote db (named when create)
 > epam.sql - name of backuped db
 ```
+
+## PART 3
+17-18
+![part3]()
+
+19-20
+
+```
+> db.collectionepam.insertMany([{item: "cats", qty: 25}, {item: "mouse", qty: 12}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("62780dd9b9942367167ecd10"),
+		ObjectId("62780dd9b9942367167ecd11")
+	]
+}
+> show collections;
+collectionepam
+inventory
+use
+> db.collectionepam.find({})
+{ "_id" : ObjectId("62780d94b9942367167ecd0e"), "item" : "cats", "qty" : 25 }
+{ "_id" : ObjectId("62780d94b9942367167ecd0f"), "item" : "mouse", "qty" : 12 }
+{ "_id" : ObjectId("62780dd9b9942367167ecd10"), "item" : "cats", "qty" : 25 }
+{ "_id" : ObjectId("62780dd9b9942367167ecd11"), "item" : "mouse", "qty" : 12 }
+>
+```
