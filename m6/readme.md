@@ -98,8 +98,9 @@ Simpliest way is to use rsync:
 ``` rsync -acr --log-file=diff.log "$from" "$to" ```
 send to cron by
 
-``` (crontab -l; echo "* * * * * rsync -acr --log-file=diff.log SOURCE DEST") | sort -u | cront
-ab - ```
+``` 
+(crontab -l; echo "* * * * * rsync -acr --log-file=diff.log SOURCE DEST") | sort -u | crontab -
+```
 where SOURCE and DEST are the dirs
 
 OR
