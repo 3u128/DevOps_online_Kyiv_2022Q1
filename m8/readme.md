@@ -9,6 +9,9 @@ Enter numbers: 1, 2, 7, 43, 9
 Output:
 List: [‘1’, ‘2’, ‘7’, ‘43’, ‘9’]
 Tuple: (‘1’, ‘2’, ‘7’, ‘43’, ‘9’)
+
+ ```./separator_to_list_tuple.py```
+
 3. Write python program, which will askfile name. File should be read, and only even lines should be shown.
 4. Write python program, which should read html document, parse it, and showit’s title.
 5. Write pythonprogram, which will parse user’s text, and replace some emotions with emoji’s (Look: pip install emoji)
