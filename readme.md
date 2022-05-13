@@ -1,2 +1,2 @@
-## ![EPAM Winter DevOps Online Program](https://training.epam.ua/#!/Home?lang=ua "epam-winter-devops")
+## [EPAM Winter DevOps Online Program](https://training.epam.ua/#!/Home?lang=ua "epam-winter-devops")
 
