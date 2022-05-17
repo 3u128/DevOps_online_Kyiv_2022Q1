@@ -5,4 +5,17 @@
 # List: [‘1’, ‘2’, ‘7’, ‘43’, ‘9’]
 # Tuple: (‘1’, ‘2’, ‘7’, ‘43’, ‘9’) 
 
+numbers = input("Enter numbers by comma: ")
+numbers = list(numbers)
+var_list = []
+var_tuple = ()
 
+for x in numbers:
+     if x.isnumeric():
+         var_list.append(x)
+
+print (var_list)
+print (type(var_list))
+var_tuple = tuple(var_list)
+print (var_tuple)
+print (type(var_tuple))
