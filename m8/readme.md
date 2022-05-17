@@ -5,14 +5,18 @@
  ```./day_today.py```
 
 2. Write python program, which will accept comma-separated numbers, and then it should write tuple and list of them:
+
+```
 Enter numbers: 1, 2, 7, 43, 9
 Output:
 List: [‘1’, ‘2’, ‘7’, ‘43’, ‘9’]
 Tuple: (‘1’, ‘2’, ‘7’, ‘43’, ‘9’)
+```
 
  ```./separator_to_list_tuple.py```
 
 3. Write python program, which will askfile name. File should be read, and only even lines should be shown.
+
  ```./ask_file_print_even.py```
  For example use readme file.
 
