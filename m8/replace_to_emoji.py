@@ -1,6 +1,6 @@
 #!/usr/bin/python
-#Write python program, which should read html document, parse it, and showit’s title.
-#
+#Write pythonprogram, which will parse user’s text, and replace some emotions with emoji’s (Look: pip install emoji)
+
 import emoji
 input_name = input("Please print file name for replace emoji: ")
 
