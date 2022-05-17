@@ -1,5 +1,6 @@
 #!/usr/bin/python
 #Write python program, which will askfile name. File should be read, and only even lines should be shown.
+#source: https://docs.python.org/3/tutorial/inputoutput.html
 
 input_name = input("Please print file name for print even numbes ")
 
