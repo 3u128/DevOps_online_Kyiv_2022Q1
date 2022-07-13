@@ -227,7 +227,8 @@ command – result should be presented)
 
 ![send pub key](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/432.png)
 
-2. 
+2. Implement basic SSH settings to increase the security of the client-server connection (at
+least)
 /etc/ssh/sshd_config
 
 change port from default
