@@ -1,3 +1,4 @@
+## Module 7 Database Administration
 ## PART 1
 
 1. install MySQL server in Ubuntu
