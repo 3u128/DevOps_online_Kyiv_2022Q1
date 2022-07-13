@@ -1,31 +1,35 @@
-task 3
-1
+## Module 4 Linux Essentials
+### Task 4.3
 
-5 state
+1.  How many states could has a process in Linux?
+
+5 state:
+
 ```
     'D' = UNINTERRUPTABLE_SLEEP
     'R' = RUNNING & RUNNABLE
     'S' = INTERRRUPTABLE_SLEEP
     'T' = STOPPED
-    'Z' = ZOMBIE
+    'Z' = ZOMBIE (defunct, for porent prosess to tell read exit status)
 ```
 
-2
+2. Examine the pstree command. Make output (highlight) the chain (ancestors) of the current
+process
 
-pstree - display a tree of processes
+**pstree** - display a tree of processes
 
 ```
 pstree -h ubuntu
 ```
 
-3
+3. What is a proc file system?
 
 pseudo fs
 Display current state of the kernel.
 Contain info about hw and running process.
 sys fs - next step of representation hw and proc-ss.
 
-4
+4. Print information about the processor (its type, supported technologies, etc.)
 
 ```
 ubuntu@epamhw:~$ cat /proc/cpuinfo | more
@@ -42,7 +46,9 @@ cache size	: 512 KB
 ...
 ```
 
-5
+5. Use the ps command to get information about the process. The information should be as
+follows: the owner of the process, the arguments with which the process was launched for
+execution, the group owner of this process, etc.
 
 ```
 ubuntu@epamhw:~$ ps -exo pid,cmd,%mem,%cpu --sort=-%mem | more
@@ -54,8 +60,11 @@ ubuntu@epamhw:~$ ps -exo pid,cmd,%mem,%cpu --sort=-%mem | more
   27403 ps -exo pid,cmd,%mem,%cpu -  0.3  0.0
   27404 more SHELL=/bin/bash PWD=/h  0.2  0.0
 ```
+-e <- ll process
+x <- with tty
+-o format <- format text by pid, cpu, etc
 
-6
+6. How to define kernel processes and user processes?
 
 ```
 ps --ppid 2 -p 2 -o uname,pid,ppid,cmd,cls
@@ -87,7 +96,8 @@ systemd+     664       1 /lib/systemd/systemd-timesy  TS
 ```
 source: [https://unix.stackexchange.com/a/411175](https://unix.stackexchange.com/a/411175)
 
-7
+7. Print the list of processes to the terminal. Briefly describe the statuses of the processes.
+What condition are they in, or can they be arriving in?
 
 ```
 ps aux
@@ -127,7 +137,7 @@ root         832  0.0  0.3   8544  3016 ?        Ss   Apr07   0:00 /usr/sbin/cro
 where status "Ss" means interruptible sleep (waiting for an event to complete)
 and low "s" - is a session leader
 
-8
+8. Display only the processes of a specific user.
 
 ```
 ubuntu@epamhw:~$ ps aux | grep root
@@ -135,44 +145,50 @@ root           1  0.0  1.1 167616 11136 ?        Ss   Apr07   0:11 /sbin/init
 root           2  0.0  0.0      0     0 ?        S    Apr07   0:00 [kthreadd]
 ```
 
-9
+9. What utilities can be used to analyze existing running tasks (by analyzing the help for the ps
+command)?
 
-grep, awk, sed
+top, grep, awk, sed
 
-10
+10. What information does top command display?
 
 the same ps, but in real time & interactivity and hotkeys by cpu, mem etc.
 
-11
+11. Display the processes of the specific user using the top command.
 
 press u -> print by what user filter and press enter
 
-12
+12. What interactive commands can be used to control the top command? Give a couple of
+examples.
 
 l,t,m     Toggle Summary: 'l' load avg; 't' task/cpu stats; 'm' memory info
 
-13
+13. Sort the contents of the processes window using various parameters (for example, the
+amount of processor time taken up, etc.)
 
 shift + f interactive mode
 select fild by _cpu_ _mem_ or else parameters
 press s for set
 press q for exit
 
-14
+14. Concept of priority, what commands are used to set priority?
+
+**renice** - alter priority of running processes
 
 ```
 ubuntu@epamhw:~$ sudo renice -1 23701
 23701 (process ID) old priority 0, new priority -1
 ```
-where renice -command for chage NI
+where renice - command for chage NI
 renice PID NI options
 
-15
+15.  Can I change the priority of a process using the top command? If so, how?
 
 press r and set PID -> enter
 next set number of NI (-19 is highest, default 0) -> enter
 
-16
+16. Examine the kill command. How to send with the kill command process control signal? Give
+an example of commonly used signals.
 
 kill -signal -pid
 
@@ -187,34 +203,50 @@ SIGSTOP 	17,19,23 	Signals to stop the process in Linux.
 
 source: [https://www.educba.com/linux-kill-signals/](https://www.educba.com/linux-kill-signals/)
 
-17
+17. Commands jobs, fg, bg, nohup. What are they for? Use the sleep, yes command to
+demonstrate the process control mechanism with fg, bg.
 
 jobs - list of process running in background
 
-jobs, fg, bg, nohup
+bg pid - run in background
+fg pid - run in foreground
 
-Part2
+usefully when bring up from suspend (CTRL+Z)
 
-1
+nohup - usefully when using ssh 
+     nohup command &
+save stdout to nohup file.
 
-[!https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/431.png](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/431.png)
+## Part 2
 
-[!https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/432.png](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/432.png)
+1. Check the implementability of the most frequently used OPENSSH commands in the MS
+Windows operating system. (Description of the expected result of the commands +screenshots:
+command – result should be presented)
 
+![ssh-agent](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/431.png)
 
+![send pub key](https://raw.githubusercontent.com/3u128/DevOps_online_Kyiv_2022Q1/main/m4/task4.3/432.png)
 
+2. 
+/etc/ssh/sshd_config
 
-2
 change port from default
+Port 3434
+
 disable pass auth
+PasswordAuthentication no
+
 change ListenAddress
 
-3
+don`t forget sudo systemctl restart sshd
+
+3. List the options for choosing keys for encryption in SSH. Implement 3 of them.
+
 ssh-keygen -t rsa
 -t dsa 
 -t ed25519
 ```
-b2q@thinkpad ~ $ ssh-keygen -t ed25519 -C "ylytviak@gmail.com"
+$ ssh-keygen -t ed25519 -C "ylytviak@gmail.com"
 Generating public/private ed25519 key pair.
 Enter file in which to save the key (/home/b2q/.ssh/id_ed25519): new
 Enter passphrase (empty for no passphrase):
@@ -235,7 +267,7 @@ The key's randomart image is:
 |                 |
 |                 |
 +----[SHA256]-----+
-b2q@thinkpad ~ $ cat new.pub
+$ cat new.pub
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEdj3NbJP3V79477txM1h64GEIDdcN3WqPYotam7cfPH ylytviak@gmail.com
 ```
-
+don't forget delete key, if you show it to the world like this.
